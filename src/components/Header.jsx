@@ -1,4 +1,6 @@
+import { Search } from "lucide-react";
 import { NavLink } from "react-router";
+import SearchBar from "./UI/SearchBar/SearchBar";
 
 const Header = () => {
   return (
@@ -23,26 +25,7 @@ const Header = () => {
           </li>
 
           <li className="nav__list-item">
-            <div className="search-bar">
-              {/* svg of search */}
-              <input
-                type="text"
-                className="search-bar__input"
-                autoComplete="list"
-                // learn about it
-                list="suggestions"
-                name="search"
-                placeholder="search what you need..."
-                // value={""}
-              />
-            </div>
-            <div id="suggestions">
-              <ul>
-                <li>
-                  <a className="search-bar__suggestion-link" href="#"></a>
-                </li>
-              </ul>
-            </div>
+            <SearchBar />
           </li>
         </ul>
       </nav>
