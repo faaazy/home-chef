@@ -1,9 +1,10 @@
 import { Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { mockSearchApi as searchApi } from "../../../utils/mockData";
+import "./SearchBar.css";
 
 const SearchBar = ({ onSearch, className = "" }) => {
-  const [inputValue, setInputValue] = useState("");
+  const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
@@ -15,9 +16,9 @@ const SearchBar = ({ onSearch, className = "" }) => {
       clearTimeout(timeoutRef.current);
     }
 
-    if (inputValue.trim()) {
+    if (query.trim()) {
       timeoutRef.current = setTimeout(async () => {
-        const results = await searchApi.getSuggestions(inputValue);
+        const results = await searchApi.getSuggestions(query);
         setSuggestions(results);
       }, 300);
     } else {
@@ -29,7 +30,7 @@ const SearchBar = ({ onSearch, className = "" }) => {
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [inputValue]);
+  }, [query]);
 
   useEffect(() => {
     const clickOutsideHandler = (e) => {
@@ -44,24 +45,41 @@ const SearchBar = ({ onSearch, className = "" }) => {
   }, []);
 
   const inputChangeHandler = (e) => {
-    setInputValue(e.target.value);
+    setQuery(e.target.value);
     setShowSuggestions(true);
   };
 
   const submitFormHandler = (e) => {
     e.preventDefault();
+
+    onSearch(query);
+
+    setShowSuggestions(false);
+  };
+
+  const suggestionClickHandler = (suggestion) => {
+    setQuery(suggestion.text);
+    setShowSuggestions(false);
+
+    if (onSearch) {
+      onSearch(suggestion.text);
+    }
   };
 
   return (
     <div className="search-bar" ref={searchRef}>
       <form onSubmit={submitFormHandler} className="search-bar__form">
         <div className="search-bar__input-wrapper">
-          <Search />
+          <label htmlFor="search">
+            <Search color="#220901ff" size={24} cursor={"pointer"} />
+          </label>
           <input
             type="text"
+            id="search"
             className="search-bar__input"
-            value={inputValue}
+            value={query}
             onChange={(e) => inputChangeHandler(e)}
+            onFocus={() => setShowSuggestions(true)}
             name="search"
             placeholder="Search what you need..."
           />
@@ -70,7 +88,11 @@ const SearchBar = ({ onSearch, className = "" }) => {
         {showSuggestions && suggestions.length > 0 && (
           <div className="search-bar__suggestions">
             {suggestions.map((suggestion, index) => (
-              <div key={index} className="search-bar__suggestion">
+              <div
+                key={index}
+                className="search-bar__suggestion"
+                onClick={() => suggestionClickHandler(suggestion)}
+              >
                 {suggestion.text}
               </div>
             ))}

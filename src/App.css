@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Geist;
+  src: url(./assets/fonts/Geist-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: Syne;
+  src: url(./assets/fonts/Syne-VariableFont_wght.ttf);
+}
+
+body {
+  font-family: Geist;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+.container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 15px;
+}

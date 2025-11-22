@@ -1,0 +1,48 @@
+.header {
+  background-color: var(--default);
+  color: var(--white);
+  padding: 20px 0;
+}
+
+.header__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: Syne;
+
+  svg {
+    margin-bottom: 2px;
+  }
+
+  a {
+    font-size: 36px;
+    font-weight: 700;
+  }
+}
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav__list-item {
+  font-size: 20px;
+  font-weight: 600;
+
+  height: 30px;
+
+  &:not(:last-child) {
+    padding-top: 2px;
+  }
+
+  &:not(:last-child):hover {
+    border-bottom: 2px solid var(--accent);
+  }
+}
