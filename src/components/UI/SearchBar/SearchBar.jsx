@@ -1,6 +1,6 @@
 import { Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { mockSearchApi as searchApi } from "../../../utils/mockData";
+import { searchApi } from "../../../utils/api";
 import "./SearchBar.css";
 
 const SearchBar = ({ onSearch, className = "" }) => {
@@ -18,8 +18,10 @@ const SearchBar = ({ onSearch, className = "" }) => {
 
     if (query.trim()) {
       timeoutRef.current = setTimeout(async () => {
-        const results = await searchApi.getSuggestions(query);
-        setSuggestions(results);
+        const results = await searchApi.getSearchResults(query);
+        // console.log(results);
+
+        setSuggestions(results.meals);
       }, 300);
     } else {
       setSuggestions([]);
@@ -58,11 +60,11 @@ const SearchBar = ({ onSearch, className = "" }) => {
   };
 
   const suggestionClickHandler = (suggestion) => {
-    setQuery(suggestion.text);
+    setQuery(suggestion.strMeal);
     setShowSuggestions(false);
 
     if (onSearch) {
-      onSearch(suggestion.text);
+      onSearch(suggestion.strMeal);
     }
   };
 
@@ -82,6 +84,7 @@ const SearchBar = ({ onSearch, className = "" }) => {
             onFocus={() => setShowSuggestions(true)}
             name="search"
             placeholder="Search what you need..."
+            autoComplete="off"
           />
         </div>
 
@@ -89,11 +92,11 @@ const SearchBar = ({ onSearch, className = "" }) => {
           <div className="search-bar__suggestions">
             {suggestions.map((suggestion, index) => (
               <div
-                key={index}
+                key={suggestion.idMeal}
                 className="search-bar__suggestion"
                 onClick={() => suggestionClickHandler(suggestion)}
               >
-                {suggestion.text}
+                {suggestion.strMeal}
               </div>
             ))}
           </div>

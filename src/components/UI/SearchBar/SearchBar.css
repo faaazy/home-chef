@@ -28,6 +28,9 @@
   background-color: var(--white);
   color: var(--default);
   border: 2px solid var(--dark-red);
+
+  overflow-y: scroll;
+  max-height: 25vh;
 }
 
 .search-bar__suggestion {
