@@ -18,4 +18,31 @@ export const searchApi = {
       console.error(error);
     }
   },
+
+  // recipe by id
+  async getRecipeById(id) {
+    try {
+      const res = await fetch(`${API_MEALDB_QUERY}lookup.php?i=${id}`);
+      console.log(res);
+
+      if (!res.ok) throw new Error("request failed");
+
+      return await res.json();
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
+  // random meal
+  async getRandomMeal() {
+    try {
+      const res = await fetch(`${API_MEALDB_QUERY}random.php`);
+
+      if (!res.ok) throw new Error("request failed");
+
+      return await res.json();
+    } catch (error) {
+      console.error(error);
+    }
+  },
 };

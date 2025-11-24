@@ -3,6 +3,8 @@ import "./assets/styles/variables.css";
 import "./App.css";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
+import Recipe from "./pages/Recipe";
+import { recipeLoader, randomMealLoader } from "./utils/loaders";
 
 function App() {
   const router = createBrowserRouter([
@@ -13,6 +15,12 @@ function App() {
         {
           index: true,
           element: <Home />,
+          loader: randomMealLoader,
+        },
+        {
+          path: "recipe/:id",
+          element: <Recipe />,
+          loader: recipeLoader,
         },
       ],
     },

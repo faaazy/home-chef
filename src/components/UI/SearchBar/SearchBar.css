@@ -6,14 +6,20 @@
   background-color: var(--white);
   padding: 3px 6px;
   border-radius: 50px;
+  width: 100%;
 
   label {
     height: 25px;
   }
 }
 
+.search-bar__form {
+  max-width: 300px;
+  width: 100%;
+}
+
 .search-bar__input {
-  max-width: 250px;
+  width: 100%;
 
   border: none;
   outline: none;
@@ -24,6 +30,7 @@
 }
 
 .search-bar__suggestions {
+  position: absolute;
   margin-top: 10px;
   background-color: var(--white);
   color: var(--default);
@@ -31,6 +38,8 @@
 
   overflow-y: scroll;
   max-height: 25vh;
+  max-width: 300px;
+  width: 100%;
 }
 
 .search-bar__suggestion {

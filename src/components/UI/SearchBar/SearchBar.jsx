@@ -64,7 +64,7 @@ const SearchBar = ({ onSearch, className = "" }) => {
     setShowSuggestions(false);
 
     if (onSearch) {
-      onSearch(suggestion.strMeal);
+      onSearch(suggestion.idMeal);
     }
   };
 
@@ -88,7 +88,7 @@ const SearchBar = ({ onSearch, className = "" }) => {
           />
         </div>
 
-        {showSuggestions && suggestions.length > 0 && (
+        {showSuggestions && suggestions?.length > 0 && (
           <div className="search-bar__suggestions">
             {suggestions.map((suggestion, index) => (
               <div

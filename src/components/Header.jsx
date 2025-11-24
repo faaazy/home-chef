@@ -8,7 +8,7 @@ const Header = () => {
 
   const searchSubmitHandler = (query) => {
     console.log(query);
-    navigate(`/recipes/${query}`);
+    navigate(`/recipe/${query}`);
   };
 
   return (
