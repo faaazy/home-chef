@@ -45,4 +45,17 @@ export const searchApi = {
       console.error(error);
     }
   },
+
+  // home categories
+  async getHomeCategories(category) {
+    try {
+      const res = await fetch(`${API_MEALDB_QUERY}filter.php?c=${category}`);
+
+      if (!res.ok) throw new Error("request failed");
+
+      return await res.json();
+    } catch (error) {
+      console.error(error);
+    }
+  },
 };

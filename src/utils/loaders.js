@@ -7,16 +7,21 @@ export const recipeLoader = async ({ params }) => {
     throw new Response("Recipe not found", { status: 404 });
   }
 
+  console.log(category);
+
   return recipe;
 };
 
 export const randomMealLoader = async () => {
   const res = await searchApi.getRandomMeal();
-  console.log(res);
+  const category = await searchApi.getHomeCategories("Breakfast");
 
   if (!res) {
     throw new Response("meal not found", { status: 404 });
   }
 
-  return res;
+  return {
+    res,
+    category,
+  };
 };

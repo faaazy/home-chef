@@ -10,9 +10,11 @@ const Recipe = () => {
   return (
     <div>
       <div className="container">
-        <h1>{strMeal}</h1>
+        <div className="recipe__item">
+          <h1>{strMeal}</h1>
 
-        <p>{strInstructions}</p>
+          <p>{strInstructions}</p>
+        </div>
       </div>
     </div>
   );
