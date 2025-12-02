@@ -7,18 +7,18 @@ const Home = () => {
 
   console.log(mealData);
 
-  const { strMeal, strMealThumb, idMeal } = mealData.res.meals[0];
-
-  const {
-    strMeal: categoryMealTitle,
-    strMealThumb: categoryMealImg,
-    idMeal: categoryMealId,
-  } = mealData.category.meals[0];
-
-  console.log(mealData.category);
+  const { strMeal, strMealThumb, idMeal } = mealData.randomMeal.meals[0];
 
   const randomRecipeClickHandler = (idMeal) => {
     navigate(`/recipe/${idMeal}`);
+  };
+
+  // TODO: think about it, how to get meals by category if i only have: id and title.
+  // or get from api before everything idk
+  const popularCategoryClickHandler = (category) => {
+    console.log(category);
+
+    // navigate(`/category/${category}`);
   };
 
   return (
@@ -33,37 +33,36 @@ const Home = () => {
           >
             <h2 className="home__item-title">{strMeal}</h2>
             <div className="home__item-img__wrapper">
-              <img src={strMealThumb} alt="" className="home__item-img" />
+              <img
+                loading="lazy"
+                src={strMealThumb}
+                alt={strMealThumb}
+                className="home__item-img"
+              />
             </div>
           </div>
 
           <div className="home__grid-categories">
-            <div className="home__grid-categories__item">
-              <h3 className="home__grid-categories__item-title">
-                {categoryMealTitle}
-              </h3>
-              <img src={categoryMealImg} alt={categoryMealTitle} />
-            </div>
-
-            <div className="home__grid-categories__item">
-              <h3 className="home__grid-categories__item-title">
-                {categoryMealTitle}
-              </h3>
-              <img src={categoryMealImg} alt={categoryMealTitle} />
-            </div>
-
-            <div className="home__grid-categories__item">
-              <h3 className="home__grid-categories__item-title">
-                {categoryMealTitle}
-              </h3>
-              <img src={categoryMealImg} alt={categoryMealTitle} />
-            </div>
-
-            <div className="home__grid-categories__item">
-              <h3 className="home__grid-categories__item-title">
-                {categoryMealTitle}
-              </h3>
-              <img src={categoryMealImg} alt={categoryMealTitle} />
+            <h2 className="home__grid-categories__title">Popular Categories</h2>
+            <div className="home__grid-categories__items">
+              {mealData.categories.map(({ meals }) => (
+                <div
+                  onClick={() => popularCategoryClickHandler(meals[1].strMeal)}
+                  className="home__grid-categories__item"
+                  key={meals[1].idMeal}
+                >
+                  <div className="home__grid-categories__item-wrapper">
+                    <img
+                      loading="lazy"
+                      src={meals[1].strMealThumb}
+                      alt={meals[1].strMealThumb}
+                    />
+                  </div>
+                  <h3 className="home__grid-categories__item-title">
+                    {meals[1].strMeal}
+                  </h3>
+                </div>
+              ))}
             </div>
           </div>
         </div>

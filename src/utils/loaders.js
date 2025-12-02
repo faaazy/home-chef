@@ -13,15 +13,20 @@ export const recipeLoader = async ({ params }) => {
 };
 
 export const randomMealLoader = async () => {
-  const res = await searchApi.getRandomMeal();
-  const category = await searchApi.getHomeCategories("Breakfast");
+  const [randomMeal, breakfast, chicken, seafood, dessert] = await Promise.all([
+    searchApi.getRandomMeal(),
+    searchApi.getHomeCategories("Breakfast"),
+    searchApi.getHomeCategories("Chicken"),
+    searchApi.getHomeCategories("Seafood"),
+    searchApi.getHomeCategories("Dessert"),
+  ]);
 
-  if (!res) {
+  if (!randomMeal) {
     throw new Response("meal not found", { status: 404 });
   }
 
   return {
-    res,
-    category,
+    randomMeal,
+    categories: [breakfast, chicken, seafood, dessert],
   };
 };

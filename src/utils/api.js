@@ -37,6 +37,7 @@ export const searchApi = {
   async getRandomMeal() {
     try {
       const res = await fetch(`${API_MEALDB_QUERY}random.php`);
+      console.log(res);
 
       if (!res.ok) throw new Error("request failed");
 
