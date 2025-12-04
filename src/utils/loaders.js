@@ -7,7 +7,7 @@ export const recipeLoader = async ({ params }) => {
     throw new Response("Recipe not found", { status: 404 });
   }
 
-  console.log(category);
+  console.log(recipe);
 
   return recipe;
 };
