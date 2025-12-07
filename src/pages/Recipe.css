@@ -7,3 +7,55 @@
   align-items: center;
   gap: 5px;
 }
+
+.recipe__title {
+  margin-top: 10px;
+  font-size: 46px;
+  font-weight: 900;
+}
+
+.recipe__desc {
+  margin-top: 5px;
+  font-size: 18px;
+  max-width: 600px;
+  line-height: 1.5;
+  font-size: 20px;
+}
+
+.recipe__sources {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  .recipe__source:hover {
+    color: var(--red-accent);
+  }
+}
+
+.recipe__tutorial {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 20px;
+}
+
+.recipe__thumbnail {
+  margin-top: 10px;
+  img {
+    max-width: 300px;
+    border-radius: 50%;
+    border: 5px solid var(--default);
+  }
+}
+
+.recipe__tutorial-ingredients__title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.recipe__tutorial-instructions__title {
+  font-size: 24px;
+  font-weight: 600;
+}

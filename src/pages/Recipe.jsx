@@ -1,4 +1,4 @@
-import { Utensils, Youtube } from "lucide-react";
+import { Link, Utensils, Youtube } from "lucide-react";
 import { useLoaderData } from "react-router";
 import Tag from "../components/UI/Tag/Tag";
 import "./Recipe.css";
@@ -6,8 +6,14 @@ import "./Recipe.css";
 const Recipe = () => {
   const recipeData = useLoaderData();
 
-  const { strMeal, strArea, strCategory, strInstructions, dateModified } =
-    recipeData.meals[0];
+  const {
+    strMeal,
+    strArea,
+    strCategory,
+    strInstructions,
+    strMealThumb,
+    dateModified,
+  } = recipeData.meals[0];
 
   console.log(recipeData.meals[0]);
 
@@ -15,6 +21,22 @@ const Recipe = () => {
   const updatedDate = new Date(timestamp);
 
   const updatedDateConverted = updatedDate.toLocaleDateString();
+
+  const styledInstructions = strInstructions.split(".");
+
+  const ingredients = [];
+
+  for (const key in recipeData.meals[0]) {
+    if (key.startsWith("strIngredient")) {
+      if (recipeData.meals[0][key].trim() !== "") {
+        ingredients.push({
+          ingredient: recipeData.meals[0][key],
+        });
+      }
+    }
+  }
+
+  console.log(ingredients);
 
   return (
     <section className="recipe">
@@ -33,12 +55,10 @@ const Recipe = () => {
             </Tag>
           </div>
 
-          <h1>{strMeal}</h1>
-
-          <p>{strInstructions}</p>
+          <h1 className="recipe__title">{strMeal}</h1>
 
           <div className="recipe__update">
-            Updated on {updatedDateConverted}
+            {dateModified !== null ? `Updated on ${updatedDateConverted}` : ""}
           </div>
 
           <div className="recipe__sources">
@@ -48,8 +68,7 @@ const Recipe = () => {
                 target="_blank"
                 title="Recipe source"
               >
-                <Utensils />
-                Source
+                <Link />
               </a>
             </div>
             <div className="recipe__source">
@@ -59,8 +78,41 @@ const Recipe = () => {
                 title="Youtube recipe"
               >
                 <Youtube />
-                Source
               </a>
+            </div>
+          </div>
+
+          <div className="recipe__tutorial">
+            <div className="recipe__tutorial-ingredients">
+              <div className="recipe__tutorial-ingredients__title">
+                Ingredients
+              </div>
+
+              <ul className="recipe__desc">
+                {ingredients.map((ingredient, i) => (
+                  <li key={i}>
+                    <strong>{i}</strong> {ingredient.ingredient}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="recipe__tutorial-instructions">
+              <div className="recipe__tutorial-instructions__title">
+                Instructions
+              </div>
+              <ul className="recipe__desc">
+                {styledInstructions.map((str, i) => (
+                  <li key={i}>
+                    {str.length > 1 ? `${i} - ${str}` : null}
+                    <br />
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="recipe__thumbnail">
+              <img src={strMealThumb} alt="" />
             </div>
           </div>
         </div>

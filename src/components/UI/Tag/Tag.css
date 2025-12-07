@@ -11,6 +11,7 @@
   background-color: transparent;
   border-radius: 50px;
 
+  transition: all 0.2s ease-in;
   &:hover {
     color: var(--dark-red);
     border: 2px solid var(--dark-red);
