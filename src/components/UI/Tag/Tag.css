@@ -1,0 +1,18 @@
+.tag {
+  padding: 4px 10px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+.tag--bordered {
+  border: 2px solid var(--red-accent);
+  color: var(--red-accent);
+  background-color: transparent;
+  border-radius: 50px;
+
+  &:hover {
+    color: var(--dark-red);
+    border: 2px solid var(--dark-red);
+  }
+}

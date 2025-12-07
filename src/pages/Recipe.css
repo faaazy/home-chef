@@ -1,0 +1,9 @@
+.recipe {
+  padding: 30px 0;
+}
+
+.recipe__item-tags {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

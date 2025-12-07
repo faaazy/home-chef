@@ -1,10 +1,13 @@
 import { Utensils, Youtube } from "lucide-react";
 import { useLoaderData } from "react-router";
+import Tag from "../components/UI/Tag/Tag";
+import "./Recipe.css";
 
 const Recipe = () => {
   const recipeData = useLoaderData();
 
-  const { strMeal, strInstructions, dateModified } = recipeData.meals[0];
+  const { strMeal, strArea, strCategory, strInstructions, dateModified } =
+    recipeData.meals[0];
 
   console.log(recipeData.meals[0]);
 
@@ -14,15 +17,21 @@ const Recipe = () => {
   const updatedDateConverted = updatedDate.toLocaleDateString();
 
   return (
-    <div>
+    <section className="recipe">
       <div className="container">
         <div className="recipe__item">
-          {
-            /* there will be some tags
-           by category and country area */
-            //
-            //
-          }
+          <div className="recipe__item-tags">
+            {/* TODO: might add tags for ingirdients */}
+            <Tag className={"tag--bordered"} linkTo={`/area/${strArea}`}>
+              {strArea}
+            </Tag>
+            <Tag
+              className={"tag--bordered"}
+              linkTo={`/category/${strCategory}`}
+            >
+              {strCategory}
+            </Tag>
+          </div>
 
           <h1>{strMeal}</h1>
 
@@ -56,7 +65,7 @@ const Recipe = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
