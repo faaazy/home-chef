@@ -36,9 +36,8 @@
 .recipe__tutorial {
   margin-top: 20px;
   display: flex;
-  justify-content: space-between;
   align-items: start;
-  gap: 20px;
+  gap: 50px;
 }
 
 .recipe__thumbnail {

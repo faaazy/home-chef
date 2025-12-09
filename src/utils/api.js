@@ -54,9 +54,24 @@ export const searchApi = {
 
       if (!res.ok) throw new Error("request failed");
 
-      return await res.json();
+      return {
+        category,
+        data: await res.json(),
+      };
     } catch (error) {
       console.error(error);
+    }
+  },
+
+  async getMealsByCategory(category) {
+    try {
+      const res = await fetch(`${API_MEALDB_QUERY}filter.php?c=${category}`);
+
+      if (!res.ok) throw new Error("request failed");
+
+      return await res.json();
+    } catch (err) {
+      console.error(err);
     }
   },
 };

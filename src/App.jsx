@@ -4,7 +4,12 @@ import "./App.css";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Recipe from "./pages/Recipe";
-import { recipeLoader, randomMealLoader } from "./utils/loaders";
+import {
+  recipeLoader,
+  randomMealLoader,
+  mealCategoriesLoader,
+} from "./utils/loaders";
+import Category from "./pages/Category";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,6 +26,11 @@ function App() {
           path: "recipe/:id",
           element: <Recipe />,
           loader: recipeLoader,
+        },
+        {
+          path: "category/:category",
+          element: <Category />,
+          loader: mealCategoriesLoader,
         },
       ],
     },

@@ -30,3 +30,13 @@ export const randomMealLoader = async () => {
     categories: [breakfast, chicken, seafood, dessert],
   };
 };
+
+export const mealCategoriesLoader = async ({ params }) => {
+  const categoryMeals = await searchApi.getMealsByCategory(params.category);
+
+  if (!categoryMeals) {
+    throw new Response("meals by this category not found", { status: 404 });
+  }
+
+  return categoryMeals;
+};

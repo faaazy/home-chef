@@ -1,4 +1,4 @@
-import { Link, Utensils, Youtube } from "lucide-react";
+import { Link, Youtube } from "lucide-react";
 import { useLoaderData } from "react-router";
 import Tag from "../components/UI/Tag/Tag";
 import "./Recipe.css";
@@ -13,6 +13,8 @@ const Recipe = () => {
     strInstructions,
     strMealThumb,
     dateModified,
+    strSource,
+    strYoutube,
   } = recipeData.meals[0];
 
   console.log(recipeData.meals[0]);
@@ -36,14 +38,12 @@ const Recipe = () => {
     }
   }
 
-  console.log(ingredients);
-
   return (
     <section className="recipe">
       <div className="container">
         <div className="recipe__item">
           <div className="recipe__item-tags">
-            {/* TODO: might add tags for ingirdients */}
+            {/* TODO: might add tags for ingredients */}
             <Tag className={"tag--bordered"} linkTo={`/area/${strArea}`}>
               {strArea}
             </Tag>
@@ -63,26 +63,22 @@ const Recipe = () => {
 
           <div className="recipe__sources">
             <div className="recipe__source">
-              <a
-                href="https://www.bbcgoodfood.com/recipes/chorizo-tomato-salad"
-                target="_blank"
-                title="Recipe source"
-              >
+              <a href={strSource} target="_blank" title="Recipe source">
                 <Link />
               </a>
             </div>
             <div className="recipe__source">
-              <a
-                href="https://www.youtube.com/watch?v=RFlENguMJNA"
-                target="_blank"
-                title="Youtube recipe"
-              >
+              <a href={strYoutube} target="_blank" title="Youtube recipe">
                 <Youtube />
               </a>
             </div>
           </div>
 
           <div className="recipe__tutorial">
+            <div className="recipe__thumbnail">
+              <img src={strMealThumb} alt="" />
+            </div>
+
             <div className="recipe__tutorial-ingredients">
               <div className="recipe__tutorial-ingredients__title">
                 Ingredients
@@ -109,10 +105,6 @@ const Recipe = () => {
                   </li>
                 ))}
               </ul>
-            </div>
-
-            <div className="recipe__thumbnail">
-              <img src={strMealThumb} alt="" />
             </div>
           </div>
         </div>
