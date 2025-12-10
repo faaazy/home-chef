@@ -13,12 +13,9 @@ export const recipeLoader = async ({ params }) => {
 };
 
 export const randomMealLoader = async () => {
-  const [randomMeal, breakfast, chicken, seafood, dessert] = await Promise.all([
+  const [randomMeal, categories] = await Promise.all([
     searchApi.getRandomMeal(),
-    searchApi.getHomeCategories("Breakfast"),
-    searchApi.getHomeCategories("Chicken"),
-    searchApi.getHomeCategories("Seafood"),
-    searchApi.getHomeCategories("Dessert"),
+    searchApi.getHomeCategories(),
   ]);
 
   if (!randomMeal) {
@@ -27,7 +24,7 @@ export const randomMealLoader = async () => {
 
   return {
     randomMeal,
-    categories: [breakfast, chicken, seafood, dessert],
+    categories,
   };
 };
 

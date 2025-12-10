@@ -88,44 +88,59 @@ const Header = () => {
         <div className="container">
           <div className="dropdown__row">
             <div className="dropdown__item">
-              <div className="dropdown__item-title">Categories</div>
+              <div className="dropdown__item-header">
+                <div className="dropdown__item-title">Categories</div>
+                <NavLink to={"/category"} className="dropdown__item-link">
+                  See all
+                </NavLink>
+              </div>
               <ul className="dropdown__list">
                 <li className="dropdown__list-item">
-                  <NavLink>test</NavLink>
+                  <NavLink to={"/category/beef"}>Beef</NavLink>
                 </li>
                 <li className="dropdown__list-item">
-                  <NavLink>test</NavLink>
+                  <NavLink to={"/category/chicken"}>Chicken</NavLink>
                 </li>
                 <li className="dropdown__list-item">
-                  <NavLink>test</NavLink>
+                  <NavLink to={"/category/seafood"}>Seafood</NavLink>
                 </li>
               </ul>
             </div>
             <div className="dropdown__item">
-              <div className="dropdown__item-title">Categories</div>
+              <div className="dropdown__item-header">
+                <div className="dropdown__item-title">Area</div>
+                <NavLink to={"/area"} className="dropdown__item-link">
+                  See all
+                </NavLink>
+              </div>
               <ul className="dropdown__list">
                 <li className="dropdown__list-item">
-                  <NavLink>test</NavLink>
+                  <NavLink to={"/area/american"}>American</NavLink>
                 </li>
                 <li className="dropdown__list-item">
-                  <NavLink>test</NavLink>
+                  <NavLink to={"/area/italian"}>Italian</NavLink>
                 </li>
                 <li className="dropdown__list-item">
-                  <NavLink>test</NavLink>
+                  <NavLink to={"/area/russian"}>Russian</NavLink>
                 </li>
               </ul>
             </div>
             <div className="dropdown__item">
-              <div className="dropdown__item-title">Categories</div>
+              <div className="dropdown__item-header">
+                <div className="dropdown__item-title">Ingredients</div>
+                <NavLink to={"/category"} className="dropdown__item-link">
+                  See all
+                </NavLink>
+              </div>
               <ul className="dropdown__list">
                 <li className="dropdown__list-item">
-                  <NavLink>test</NavLink>
+                  <NavLink to={"/category/beef"}>Beef</NavLink>
                 </li>
                 <li className="dropdown__list-item">
-                  <NavLink>test</NavLink>
+                  <NavLink to={"/category/chicken"}>Chicken</NavLink>
                 </li>
                 <li className="dropdown__list-item">
-                  <NavLink>test</NavLink>
+                  <NavLink to={"/category/seafood"}>Seafood</NavLink>
                 </li>
               </ul>
             </div>

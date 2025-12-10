@@ -35,6 +35,11 @@
   }
 }
 
+.home__grid-categories__item-wrapper {
+  background-color: #4e2d21;
+  padding: 5px;
+}
+
 .home__grid-categories__title {
   margin-bottom: 10px;
 }

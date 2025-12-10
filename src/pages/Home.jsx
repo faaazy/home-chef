@@ -8,6 +8,9 @@ const Home = () => {
   console.log(mealData);
 
   const { strMeal, strMealThumb, idMeal } = mealData.randomMeal.meals[0];
+  const { categories } = mealData.categories;
+
+  console.log(categories);
 
   const randomRecipeClickHandler = (idMeal) => {
     navigate(`/recipe/${idMeal}`);
@@ -47,29 +50,31 @@ const Home = () => {
           <div className="home__grid-categories">
             <h2 className="home__grid-categories__title">Popular Categories</h2>
             <div className="home__grid-categories__items">
-              {mealData.categories.map((item) => (
-                <div
-                  onClick={() =>
-                    popularCategoryClickHandler(
-                      item.category,
-                      item.data.meals[1].strMeal
-                    )
-                  }
-                  className="home__grid-categories__item"
-                  key={item.data.meals[1].idMeal}
-                >
-                  <div className="home__grid-categories__item-wrapper">
-                    <img
-                      loading="lazy"
-                      src={item.data.meals[1].strMealThumb}
-                      alt={item.data.meals[1].strMealThumb}
-                    />
+              {categories.map((item) => {
+                if (item.idCategory > 4) return;
+
+                return (
+                  <div
+                    onClick={() =>
+                      popularCategoryClickHandler(item.strCategory)
+                    }
+                    className="home__grid-categories__item"
+                    key={item.idCategory}
+                  >
+                    <div className="home__grid-categories__item-wrapper">
+                      <img
+                        loading="lazy"
+                        src={item.strCategoryThumb}
+                        alt={item.strCategory}
+                        title={item.strCategory}
+                      />
+                    </div>
+                    <h3 className="home__grid-categories__item-title">
+                      {item.strCategory}
+                    </h3>
                   </div>
-                  <h3 className="home__grid-categories__item-title">
-                    {item.category}
-                  </h3>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

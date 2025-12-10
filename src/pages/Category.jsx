@@ -2,6 +2,8 @@ import { useLoaderData, useNavigate, useParams } from "react-router";
 import "./Category.css";
 
 const Category = () => {
+  // TODO: need to optimize loading(cuz 50 pictures load at one time)
+
   const { meals } = useLoaderData();
   const navigate = useNavigate();
 

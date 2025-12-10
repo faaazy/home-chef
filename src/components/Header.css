@@ -92,16 +92,15 @@
   max-width: 785px;
   margin-left: auto;
   display: flex;
-  gap: 50px;
+  gap: 30px;
 }
 
-.dropdown__item-title {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 10px;
+.dropdown__item {
+  width: 100%;
 }
 
 .dropdown__list {
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -109,6 +108,28 @@
 
 .dropdown__list-item {
   font-size: 18px;
+
+  transition: 0.2s ease-in;
+  &:hover {
+    color: var(--red);
+  }
+}
+
+.dropdown__item-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.dropdown__item-header {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.dropdown__item-link {
+  color: var(--red-accent);
+  font-weight: 500;
+  text-decoration: underline;
 }
 
 .gray {

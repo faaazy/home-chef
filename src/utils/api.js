@@ -1,15 +1,14 @@
 const API_MEALDB_QUERY = "https://www.themealdb.com/api/json/v1/1/";
 const API_SPOONACULAR_QUERY = "https://api.spoonacular.com/recipes/";
 const SPOONACULAR_KEY = import.meta.env.VITE_SPOONACULAR_API_KEY;
+// const res = await fetch(
+//   `${API_SPOONACULAR_QUERY}complexSearch?query=${query}&apiKey=${SPOONACULAR_KEY}`
+// );
 
 export const searchApi = {
   async getSearchResults(query) {
     try {
-      // const res = await fetch(
-      //   `${API_SPOONACULAR_QUERY}complexSearch?query=${query}&apiKey=${SPOONACULAR_KEY}`
-      // );
       const res = await fetch(`${API_MEALDB_QUERY}search.php?s=${query}`);
-      // console.log(res);
 
       if (!res.ok) throw new Error("request failed");
 
@@ -48,16 +47,15 @@ export const searchApi = {
   },
 
   // home categories
-  async getHomeCategories(category) {
+  async getHomeCategories() {
     try {
-      const res = await fetch(`${API_MEALDB_QUERY}filter.php?c=${category}`);
+      const res = await fetch(`${API_MEALDB_QUERY}categories.php`);
 
       if (!res.ok) throw new Error("request failed");
 
-      return {
-        category,
-        data: await res.json(),
-      };
+      const data = await res.json();
+
+      return data;
     } catch (error) {
       console.error(error);
     }
