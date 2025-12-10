@@ -2,9 +2,6 @@ import "./Home.css";
 import { useLoaderData, useNavigate } from "react-router";
 
 const Home = () => {
-  // TODO: need to optimize everything somehow
-  // cuz the home page takes forever to load
-
   const mealData = useLoaderData();
   const navigate = useNavigate();
 
