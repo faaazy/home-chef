@@ -12,10 +12,10 @@ export const recipeLoader = async ({ params }) => {
   return recipe;
 };
 
-export const randomMealLoader = async () => {
+export const homeLoader = async () => {
   const [randomMeal, categories] = await Promise.all([
     searchApi.getRandomMeal(),
-    searchApi.getHomeCategories(),
+    searchApi.getCategories(),
   ]);
 
   if (!randomMeal) {
@@ -36,4 +36,14 @@ export const mealCategoriesLoader = async ({ params }) => {
   }
 
   return categoryMeals;
+};
+
+export const allMealCategoriesLoader = async () => {
+  const mealCategories = await searchApi.getCategories();
+
+  if (!mealCategories) {
+    throw new Response("meal categories are not found", { status: 404 });
+  }
+
+  return mealCategories;
 };

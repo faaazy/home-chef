@@ -46,8 +46,8 @@ export const searchApi = {
     }
   },
 
-  // home categories
-  async getHomeCategories() {
+  // get categories
+  async getCategories() {
     try {
       const res = await fetch(`${API_MEALDB_QUERY}categories.php`);
 
