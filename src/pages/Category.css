@@ -47,3 +47,13 @@
 .category__grid-item__img-title {
   font-size: 20px;
 }
+
+.categories {
+  .category__grid-item__img {
+    background-color: #4e2d21;
+    img {
+      height: 100%;
+      display: block;
+    }
+  }
+}

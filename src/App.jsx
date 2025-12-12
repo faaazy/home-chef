@@ -6,10 +6,12 @@ import Home from "./pages/Home";
 import Recipe from "./pages/Recipe";
 import {
   recipeLoader,
-  randomMealLoader,
   mealCategoriesLoader,
+  allMealCategoriesLoader,
+  homeLoader,
 } from "./utils/loaders";
 import Category from "./pages/Category";
+import CategoryList from "./pages/categoryList";
 
 function App() {
   const router = createBrowserRouter([
@@ -20,12 +22,17 @@ function App() {
         {
           index: true,
           element: <Home />,
-          loader: randomMealLoader,
+          loader: homeLoader,
         },
         {
           path: "recipe/:id",
           element: <Recipe />,
           loader: recipeLoader,
+        },
+        {
+          path: "category/",
+          element: <CategoryList />,
+          loader: allMealCategoriesLoader,
         },
         {
           path: "category/:category",
