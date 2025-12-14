@@ -90,57 +90,114 @@ const Header = () => {
             <div className="dropdown__item">
               <div className="dropdown__item-header">
                 <div className="dropdown__item-title">Categories</div>
-                <NavLink to={"/category"} className="dropdown__item-link">
+                <NavLink
+                  to={"/category"}
+                  onClick={() => setIsDropdownOpen(false)}
+                  className="dropdown__item-link"
+                >
                   See all
                 </NavLink>
               </div>
               <ul className="dropdown__list">
                 <li className="dropdown__list-item">
-                  <NavLink to={"/category/beef"}>Beef</NavLink>
+                  <NavLink
+                    to={"/category/beef"}
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Beef
+                  </NavLink>
                 </li>
                 <li className="dropdown__list-item">
-                  <NavLink to={"/category/chicken"}>Chicken</NavLink>
+                  <NavLink
+                    to={"/category/chicken"}
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Chicken
+                  </NavLink>
                 </li>
                 <li className="dropdown__list-item">
-                  <NavLink to={"/category/seafood"}>Seafood</NavLink>
+                  <NavLink
+                    to={"/category/seafood"}
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Seafood
+                  </NavLink>
                 </li>
               </ul>
             </div>
             <div className="dropdown__item">
               <div className="dropdown__item-header">
                 <div className="dropdown__item-title">Area</div>
-                <NavLink to={"/area"} className="dropdown__item-link">
+                <NavLink
+                  to={"/area"}
+                  className="dropdown__item-link"
+                  onClick={() => setIsDropdownOpen(false)}
+                >
                   See all
                 </NavLink>
               </div>
               <ul className="dropdown__list">
                 <li className="dropdown__list-item">
-                  <NavLink to={"/area/american"}>American</NavLink>
+                  <NavLink
+                    to={"/area/american"}
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    American
+                  </NavLink>
                 </li>
                 <li className="dropdown__list-item">
-                  <NavLink to={"/area/italian"}>Italian</NavLink>
+                  <NavLink
+                    to={"/area/italian"}
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Italian
+                  </NavLink>
                 </li>
                 <li className="dropdown__list-item">
-                  <NavLink to={"/area/russian"}>Russian</NavLink>
+                  <NavLink
+                    to={"/area/russian"}
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Russian
+                  </NavLink>
                 </li>
               </ul>
             </div>
             <div className="dropdown__item">
               <div className="dropdown__item-header">
                 <div className="dropdown__item-title">Ingredients</div>
-                <NavLink to={"/category"} className="dropdown__item-link">
+                <NavLink
+                  to={"/ingredient"}
+                  className="dropdown__item-link"
+                  onClick={() => setIsDropdownOpen(false)}
+                >
                   See all
                 </NavLink>
               </div>
               <ul className="dropdown__list">
                 <li className="dropdown__list-item">
-                  <NavLink to={"/category/beef"}>Beef</NavLink>
+                  <NavLink
+                    to={"/ingredient/salmon"}
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Salmon
+                  </NavLink>
                 </li>
                 <li className="dropdown__list-item">
-                  <NavLink to={"/category/chicken"}>Chicken</NavLink>
+                  <NavLink
+                    to={"/ingredient/pork"}
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Pork
+                  </NavLink>
                 </li>
                 <li className="dropdown__list-item">
-                  <NavLink to={"/category/seafood"}>Seafood</NavLink>
+                  <NavLink
+                    to={"/ingredient/eggs"}
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Eggs
+                  </NavLink>
                 </li>
               </ul>
             </div>

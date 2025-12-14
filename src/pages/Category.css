@@ -49,6 +49,7 @@
 }
 
 .categories {
+  padding: 30px 0;
   .category__grid-item__img {
     background-color: #4e2d21;
     img {

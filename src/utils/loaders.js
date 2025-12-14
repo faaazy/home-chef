@@ -47,3 +47,44 @@ export const allMealCategoriesLoader = async () => {
 
   return mealCategories;
 };
+
+export const areaCategoriesLoader = async () => {
+  const areaCategories = await searchApi.getAreaCategories();
+
+  if (!areaCategories) {
+    throw new Response("area categories are not found", { status: 404 });
+  }
+
+  return areaCategories;
+};
+
+export const areaMealsLoader = async ({ params }) => {
+  const areaMeals = await searchApi.getAreaMeals(params.area);
+
+  if (!areaMeals) {
+    throw new Response("area meals are not found", { status: 404 });
+  }
+
+  return areaMeals;
+};
+
+export const ingredientsListLoader = async () => {
+  const ingredientsList = await searchApi.getIngredientsList();
+
+  if (!ingredientsList) {
+    throw new Response("area categories are not found", { status: 404 });
+  }
+
+  return ingredientsList;
+};
+
+export const ingredientMealsLoader = async ({ params }) => {
+  const ingredientMeals = await searchApi.getMealsByIngredient(
+    params.ingredient
+  );
+
+  if (!ingredientMeals)
+    throw new Response("meals by ingredient are not found", { status: 404 });
+
+  return ingredientMeals;
+};

@@ -30,7 +30,10 @@ const Recipe = () => {
 
   for (const key in recipeData.meals[0]) {
     if (key.startsWith("strIngredient")) {
-      if (recipeData.meals[0][key].trim() !== "") {
+      if (
+        recipeData.meals[0][key] !== null &&
+        recipeData.meals[0][key] !== ""
+      ) {
         ingredients.push({
           ingredient: recipeData.meals[0][key],
         });
