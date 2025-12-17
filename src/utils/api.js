@@ -72,4 +72,52 @@ export const searchApi = {
       console.error(err);
     }
   },
+
+  async getAreaCategories() {
+    try {
+      const res = await fetch(`${API_MEALDB_QUERY}list.php?a=list`);
+
+      if (!res.ok) throw new Error("request failed");
+
+      return await res.json();
+    } catch (err) {
+      console.error(err);
+    }
+  },
+
+  async getAreaMeals(area) {
+    try {
+      const res = await fetch(`${API_MEALDB_QUERY}filter.php?a=${area}`);
+
+      if (!res.ok) throw new Error("request failed");
+
+      return await res.json();
+    } catch (err) {
+      console.error(err);
+    }
+  },
+
+  async getIngredientsList() {
+    try {
+      const res = await fetch(`${API_MEALDB_QUERY}list.php?i=list`);
+
+      if (!res.ok) throw new Error("request failed");
+
+      return await res.json();
+    } catch (err) {
+      console.error(err);
+    }
+  },
+
+  async getMealsByIngredient(ingredient) {
+    try {
+      const res = await fetch(`${API_MEALDB_QUERY}filter.php?i=${ingredient}`);
+
+      if (!res.ok) throw new Error("request failed");
+
+      return await res.json();
+    } catch (err) {
+      console.error(err);
+    }
+  },
 };

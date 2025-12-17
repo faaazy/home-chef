@@ -9,9 +9,17 @@ import {
   mealCategoriesLoader,
   allMealCategoriesLoader,
   homeLoader,
+  areaCategoriesLoader,
+  areaMealsLoader,
+  ingredientsListLoader,
+  ingredientMealsLoader,
 } from "./utils/loaders";
 import Category from "./pages/Category";
-import CategoryList from "./pages/categoryList";
+import CategoryList from "./pages/CategoryList";
+import AreaList from "./pages/AreaList";
+import Area from "./pages/Area";
+import IngredientsList from "./pages/IngredientsList";
+import IngredientMeals from "./pages/IngredientMeals";
 
 function App() {
   const router = createBrowserRouter([
@@ -30,7 +38,7 @@ function App() {
           loader: recipeLoader,
         },
         {
-          path: "category/",
+          path: "category",
           element: <CategoryList />,
           loader: allMealCategoriesLoader,
         },
@@ -38,6 +46,26 @@ function App() {
           path: "category/:category",
           element: <Category />,
           loader: mealCategoriesLoader,
+        },
+        {
+          path: "area",
+          element: <AreaList />,
+          loader: areaCategoriesLoader,
+        },
+        {
+          path: "area/:area",
+          element: <Area />,
+          loader: areaMealsLoader,
+        },
+        {
+          path: "ingredient",
+          element: <IngredientsList />,
+          loader: ingredientsListLoader,
+        },
+        {
+          path: "ingredient/:ingredient",
+          element: <IngredientMeals />,
+          loader: ingredientMealsLoader,
         },
       ],
     },
