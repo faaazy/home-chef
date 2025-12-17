@@ -41,12 +41,13 @@ const Recipe = () => {
     }
   }
 
+  console.log(ingredients[0]);
+
   return (
     <section className="recipe">
       <div className="container">
         <div className="recipe__item">
           <div className="recipe__item-tags">
-            {/* TODO: might add tags for ingredients */}
             <Tag className={"tag--bordered"} linkTo={`/area/${strArea}`}>
               {strArea}
             </Tag>
@@ -56,6 +57,15 @@ const Recipe = () => {
             >
               {strCategory}
             </Tag>
+            {ingredients.map(({ ingredient }, index) => (
+              <Tag
+                key={index}
+                className={"tag--bordered"}
+                linkTo={`/ingredient/${ingredient.split(" ").join("_")}`}
+              >
+                {ingredient}
+              </Tag>
+            ))}
           </div>
 
           <h1 className="recipe__title">{strMeal}</h1>

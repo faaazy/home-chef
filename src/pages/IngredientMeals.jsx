@@ -7,6 +7,10 @@ const IngredientMeals = () => {
 
   const { ingredient } = useParams();
 
+  const styledTitleIngredient =
+    ingredient.split("_").join(" ")[0].toUpperCase() +
+    ingredient.split("_").join(" ").slice(1);
+
   console.log(meals, ingredient);
 
   const recipeClickHandler = (idMeal) => {
@@ -16,9 +20,7 @@ const IngredientMeals = () => {
   return (
     <section className="ingredient-meals">
       <div className="container">
-        <h2 className="ingredient-meals__title">{`${ingredient[0].toUpperCase()}${ingredient.slice(
-          1
-        )}`}</h2>
+        <h2 className="ingredient-meals__title">{`${styledTitleIngredient}`}</h2>
 
         <div className="ingredient-meals__grid">
           {meals.map((meal) => (
