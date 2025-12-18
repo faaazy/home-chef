@@ -20,6 +20,7 @@ import AreaList from "./pages/AreaList";
 import Area from "./pages/Area";
 import IngredientsList from "./pages/IngredientsList";
 import IngredientMeals from "./pages/IngredientMeals";
+import Pantry from "./pages/Pantry";
 
 function App() {
   const router = createBrowserRouter([
@@ -66,6 +67,10 @@ function App() {
           path: "ingredient/:ingredient",
           element: <IngredientMeals />,
           loader: ingredientMealsLoader,
+        },
+        {
+          path: "pantry",
+          element: <Pantry />,
         },
       ],
     },
