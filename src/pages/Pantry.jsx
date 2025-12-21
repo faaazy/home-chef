@@ -6,12 +6,18 @@ import {
   Hash,
   ArrowDownWideNarrow,
   Plus,
+  CaseSensitive,
+  NotebookText,
+  ChartBarStacked,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import Select from "../components/UI/Select/Select";
 import { useState } from "react";
 
 const Pantry = () => {
   const [sortValue, setSortValue] = useState("name-asc");
+  const [pantryProducts, setPantryProducts] = useState([]);
 
   return (
     <section className="pantry">
@@ -63,15 +69,54 @@ const Pantry = () => {
               <th>
                 <CircleCheck />
               </th>
-              <th>Name</th>
+              <th>
+                <CaseSensitive />
+                Name
+              </th>
               <th>
                 <Hash />
                 Qty
               </th>
-              <th>Notes</th>
+              <th>
+                <ChartBarStacked />
+                Category
+              </th>
+              <th>
+                <NotebookText />
+                Notes
+              </th>
+              <th>Actions</th>
             </tr>
           </thead>
+          <tbody>
+            {/* pantryProducts.map((pantryProduct, index) => ()) */}
+          </tbody>
         </table>
+
+        <div className="pantry__pagination">
+          <div className="pagination-controls">
+            <button
+              // onClick={handlePrevPage}
+              // disabled={currentPage === 1}
+              className="pagination-btn"
+            >
+              <ChevronLeft size={30} strokeWidth={3} />
+            </button>
+
+            <span className="page-info">
+              Page 0 of 10
+              {/* Page {currentPage} of {totalPages} */}
+            </span>
+
+            <button
+              // onClick={handleNextPage}
+              // disabled={currentPage === totalPages}
+              className="pagination-btn"
+            >
+              <ChevronRight size={30} strokeWidth={3} />
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   );
