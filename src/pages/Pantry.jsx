@@ -14,10 +14,17 @@ import {
 } from "lucide-react";
 import Select from "../components/UI/Select/Select";
 import { useState } from "react";
+import PantryModal from "../components/PantryModal/PantryModal";
 
 const Pantry = () => {
   const [sortValue, setSortValue] = useState("name-asc");
   const [pantryProducts, setPantryProducts] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const addNewProductHandler = (newProduct) => {
+    setPantryProducts((prev) => [...prev, newProduct]);
+    setIsModalOpen(false);
+  };
 
   return (
     <section className="pantry">
@@ -42,7 +49,10 @@ const Pantry = () => {
 
             <div className="pantry__display-row__add">
               <Plus />
-              <button className="pantry__display-row__add-btn">
+              <button
+                className="pantry__display-row__add-btn"
+                onClick={() => setIsModalOpen(true)}
+              >
                 Add product
               </button>
             </div>
@@ -89,7 +99,15 @@ const Pantry = () => {
             </tr>
           </thead>
           <tbody>
-            {/* pantryProducts.map((pantryProduct, index) => ()) */}
+            {pantryProducts.map((pantryProduct, index) => (
+              <tr key={index}>
+                <td>{index}</td>
+                <td>{pantryProduct.name}</td>
+                <td>{pantryProduct.qty}</td>
+                <td>{pantryProduct.category}</td>
+                <td>{pantryProduct.notes}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
 
@@ -117,6 +135,13 @@ const Pantry = () => {
             </button>
           </div>
         </div>
+
+        {isModalOpen && (
+          <PantryModal
+            onAddNewProduct={addNewProductHandler}
+            closeModal={setIsModalOpen}
+          />
+        )}
       </div>
     </section>
   );

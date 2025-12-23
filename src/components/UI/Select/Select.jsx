@@ -53,7 +53,7 @@ const Select = ({ selectedValue, onChange, className = "" }) => {
       </div>
 
       {isOpen && (
-        <div className="select-dropdown">
+        <div className="select-dropdown" ref={dropdownRef}>
           {options.map((option) => (
             <div
               key={option.value}
