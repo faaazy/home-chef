@@ -21,6 +21,11 @@ const PantryModal = ({ onAddNewProduct, closeModal }) => {
     };
 
     onAddNewProduct(newProduct);
+
+    setNewProductName("");
+    setNewProductQty("");
+    setNewProductCategory("eggs");
+    setNewProductNotes("");
   };
 
   useEffect(() => {
@@ -28,13 +33,12 @@ const PantryModal = ({ onAddNewProduct, closeModal }) => {
       if (modalRef.current && !modalRef.current.contains(e.target)) {
         closeModal(false);
       }
-
-      document.addEventListener("mousedown", clickOutsideHandler);
-
-      return () =>
-        document.removeEventListener("mousedown", clickOutsideHandler);
     };
-  }, []);
+
+    document.addEventListener("mousedown", clickOutsideHandler);
+
+    return () => document.removeEventListener("mousedown", clickOutsideHandler);
+  }, [closeModal]);
 
   return (
     <div className="pantry-modal" ref={backgroundRef}>
@@ -55,6 +59,7 @@ const PantryModal = ({ onAddNewProduct, closeModal }) => {
             id="panryAddName"
             placeholder="Apple..."
             required
+            autoFocus
           />
         </div>
 
@@ -75,7 +80,7 @@ const PantryModal = ({ onAddNewProduct, closeModal }) => {
           <label htmlFor="panryAddCategory">Category</label>
           {/* custom select or something like search with suggestions */}
           <select
-            // value={newProductCategory}
+            value={newProductCategory}
             onChange={(e) => setNewProductCategory(e.target.value)}
           >
             <option value="eggs">Eggs</option>

@@ -1,10 +1,6 @@
 import {
-  ArrowUpZA,
-  ArrowDownZA,
-  ArrowUpWideNarrow,
   CircleCheck,
   Hash,
-  ArrowDownWideNarrow,
   Plus,
   CaseSensitive,
   NotebookText,
