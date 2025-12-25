@@ -27,6 +27,11 @@ li {
   list-style-type: none;
 }
 
+input {
+  font-family: inherit;
+  color: inherit;
+}
+
 .container {
   max-width: 1220px;
   margin: 0 auto;

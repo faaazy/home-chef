@@ -11,6 +11,7 @@ import {
 import Select from "../components/UI/Select/Select";
 import { useState } from "react";
 import PantryModal from "../components/PantryModal/PantryModal";
+import "./Pantry.css";
 
 const Pantry = () => {
   const [sortValue, setSortValue] = useState("name-asc");
@@ -27,28 +28,18 @@ const Pantry = () => {
       <div className="container">
         <h2 className="pantry__title">Pantry</h2>
 
-        <div className="pantry__heading">
-          <div className="pantry__heading-tabs">
-            <div className="pantry__heading-tabs__item">Home</div>
-            <div className="pantry__heading-tabs__item">Pantry</div>
-            <div className="pantry__heading-tabs__item">Recipes</div>
-          </div>
-        </div>
-
         <div className="pantry__display">
-          <div className="pantry__display-title">My Pantry</div>
-
           <div className="pantry__display-row">
             <div className="pantry__display-row__search">
               <input type="text" placeholder="Search products..." />
             </div>
 
-            <div className="pantry__display-row__add">
+            <div
+              className="pantry__display-row__add"
+              onClick={() => setIsModalOpen(true)}
+            >
               <Plus />
-              <button
-                className="pantry__display-row__add-btn"
-                onClick={() => setIsModalOpen(true)}
-              >
+              <button className="pantry__display-row__add-btn">
                 Add product
               </button>
             </div>
@@ -59,6 +50,11 @@ const Pantry = () => {
               <select name="pantry-display-categories">
                 <option value="all">All products</option>
                 {/* TODO: all user's categories that he chose */}
+                {/* {pantryProducts.filter(({category}) => category !==  ).map(({ category }, index) => (
+                  <option value={category} key={index}>
+                    {category}
+                  </option>
+                ))} */}
                 {/* {pantryCategories.map((category, index) => )} */}
               </select>
             </div>
