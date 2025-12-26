@@ -8,13 +8,12 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import Select from "../components/UI/Select/Select";
 import { useState } from "react";
-import PantryModal from "../components/PantryModal/PantryModal";
 import "./Pantry.css";
+import PantryModal from "../components/PantryModal/PantryModal";
+import PantryFilters from "../components/PantryFilters/PantryFilters";
 
 const Pantry = () => {
-  const [sortValue, setSortValue] = useState("name-asc");
   const [pantryProducts, setPantryProducts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -45,24 +44,7 @@ const Pantry = () => {
             </div>
           </div>
 
-          <div className="pantry__display-filter">
-            <div className="pantry__display-filter__item">
-              <select name="pantry-display-categories">
-                <option value="all">All products</option>
-                {/* TODO: all user's categories that he chose */}
-                {/* {pantryProducts.filter(({category}) => category !==  ).map(({ category }, index) => (
-                  <option value={category} key={index}>
-                    {category}
-                  </option>
-                ))} */}
-                {/* {pantryCategories.map((category, index) => )} */}
-              </select>
-            </div>
-
-            <div className="pantry__display-filter__item">
-              <Select selectedValue={sortValue} onChange={setSortValue} />
-            </div>
-          </div>
+          <PantryFilters />
         </div>
 
         <table className="pantry__table">

@@ -1,0 +1,18 @@
+.pantry__display-filter {
+  margin-top: 20px;
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+}
+
+.pantry__display-filter__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 200px;
+  width: 100%;
+
+  border: 2px solid var(--default);
+  cursor: pointer;
+  user-select: none;
+}

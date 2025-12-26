@@ -55,21 +55,3 @@
   cursor: pointer;
   font-size: 16px;
 }
-
-.pantry__display-filter {
-  margin-top: 20px;
-  display: flex;
-  align-items: stretch;
-  gap: 20px;
-}
-
-.pantry__display-filter__item {
-  padding: 5px;
-  border: 2px solid var(--default);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 150px;
-  width: 100%;
-  cursor: pointer;
-}
