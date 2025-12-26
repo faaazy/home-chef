@@ -55,3 +55,43 @@
   cursor: pointer;
   font-size: 16px;
 }
+
+.pantry__table {
+  margin: 30px auto;
+  /* max-width: 800px; */
+  width: 100%;
+
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.pantry__table-heading {
+  tr th:first-child {
+    width: 50px;
+  }
+  border-bottom: 2px solid var(--default);
+  .pantry-th {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+tbody {
+  tr td:first-child {
+    width: 50px;
+  }
+  .pantry-td {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 5px;
+    font-size: 18px;
+    word-wrap: break-word;
+    word-break: break-word;
+    /* max-width: 200px; */
+    text-align: center;
+  }
+}

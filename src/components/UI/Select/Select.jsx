@@ -1,12 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Select.css";
-import {
-  ArrowUpZA,
-  ArrowDownZA,
-  ArrowUpWideNarrow,
-  ArrowDownWideNarrow,
-  ChevronDown,
-} from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 const Select = ({
   options,

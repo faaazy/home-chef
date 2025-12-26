@@ -51,35 +51,74 @@ const Pantry = () => {
           <thead className="pantry__table-heading">
             <tr>
               <th>
-                <CircleCheck />
+                <div className="pantry-th">
+                  <CircleCheck />
+                </div>
               </th>
               <th>
-                <CaseSensitive />
-                Name
+                <div className="pantry-th">
+                  <CaseSensitive size={20} />
+                  <span>Name</span>
+                </div>
               </th>
               <th>
-                <Hash />
-                Qty
+                <div className="pantry-th">
+                  <Hash size={20} />
+                  <span>Qty</span>
+                </div>
               </th>
               <th>
-                <ChartBarStacked />
-                Category
+                <div className="pantry-th">
+                  <ChartBarStacked size={20} />
+                  <span>Category</span>
+                </div>
               </th>
               <th>
-                <NotebookText />
-                Notes
+                <div className="pantry-th">
+                  <NotebookText size={20} />
+                  <span>Notes</span>
+                </div>
               </th>
-              <th>Actions</th>
+              <th>
+                <div className="pantry-th">
+                  <span>Actions</span>
+                </div>
+              </th>
             </tr>
           </thead>
           <tbody>
             {pantryProducts.map((pantryProduct, index) => (
               <tr key={index}>
-                <td>{index}</td>
-                <td>{pantryProduct.name}</td>
-                <td>{pantryProduct.qty}</td>
-                <td>{pantryProduct.category}</td>
-                <td>{pantryProduct.notes}</td>
+                <td>
+                  <div className="pantry-td">
+                    <span>{index}</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="pantry-td">
+                    <span>{pantryProduct.name}</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="pantry-td">
+                    <span>{pantryProduct.qty}</span>
+                  </div>
+                </td>
+                <span>
+                  <div className="pantry-td">
+                    <span>{pantryProduct.category}</span>
+                  </div>
+                </span>
+                <td>
+                  <div className="pantry-td">
+                    <span>{pantryProduct.notes}</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="pantry-td">
+                    <button>Edit</button> <button>Delete</button>
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>
