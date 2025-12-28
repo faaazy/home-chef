@@ -30,6 +30,10 @@ li {
 input {
   font-family: inherit;
 }
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
 
 .container {
   max-width: 1220px;

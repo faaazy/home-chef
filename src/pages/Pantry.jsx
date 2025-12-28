@@ -8,7 +8,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import "./Pantry.css";
 import PantryModal from "../components/PantryModal/PantryModal";
 import PantryFilters from "../components/PantryFilters/PantryFilters";
@@ -16,6 +16,31 @@ import PantryFilters from "../components/PantryFilters/PantryFilters";
 const Pantry = () => {
   const [pantryProducts, setPantryProducts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 5;
+
+  const currentIngredients = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return pantryProducts.slice(startIndex, endIndex);
+  }, [pantryProducts, currentPage]);
+
+  const totalPages = Math.ceil(pantryProducts.length / itemsPerPage);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prev) => prev + 1);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   const addNewProductHandler = (newProduct) => {
     setPantryProducts((prev) => [...prev, newProduct]);
@@ -47,107 +72,113 @@ const Pantry = () => {
           <PantryFilters />
         </div>
 
-        <table className="pantry__table">
-          <thead className="pantry__table-heading">
-            <tr>
-              <th>
-                <div className="pantry-th">
-                  <CircleCheck />
-                </div>
-              </th>
-              <th>
-                <div className="pantry-th">
-                  <CaseSensitive size={20} />
-                  <span>Name</span>
-                </div>
-              </th>
-              <th>
-                <div className="pantry-th">
-                  <Hash size={20} />
-                  <span>Qty</span>
-                </div>
-              </th>
-              <th>
-                <div className="pantry-th">
-                  <ChartBarStacked size={20} />
-                  <span>Category</span>
-                </div>
-              </th>
-              <th>
-                <div className="pantry-th">
-                  <NotebookText size={20} />
-                  <span>Notes</span>
-                </div>
-              </th>
-              <th>
-                <div className="pantry-th">
-                  <span>Actions</span>
-                </div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {pantryProducts.map((pantryProduct, index) => (
-              <tr key={index}>
-                <td>
-                  <div className="pantry-td">
-                    <span>{index}</span>
+        {pantryProducts.length > 0 ? (
+          <table className="pantry__table">
+            <thead className="pantry__table-heading">
+              <tr>
+                <th>
+                  <div className="pantry-th">
+                    <CircleCheck />
                   </div>
-                </td>
-                <td>
-                  <div className="pantry-td">
-                    <span>{pantryProduct.name}</span>
+                </th>
+                <th>
+                  <div className="pantry-th">
+                    <CaseSensitive size={20} />
+                    Name
                   </div>
-                </td>
-                <td>
-                  <div className="pantry-td">
-                    <span>{pantryProduct.qty}</span>
+                </th>
+                <th>
+                  <div className="pantry-th">
+                    <Hash size={20} />
+                    Qty
                   </div>
-                </td>
-                <span>
-                  <div className="pantry-td">
-                    <span>{pantryProduct.category}</span>
+                </th>
+                <th>
+                  <div className="pantry-th">
+                    <ChartBarStacked size={20} />
+                    Category
                   </div>
-                </span>
-                <td>
-                  <div className="pantry-td">
-                    <span>{pantryProduct.notes}</span>
+                </th>
+                <th>
+                  <div className="pantry-th">
+                    <NotebookText size={20} />
+                    Notes
                   </div>
-                </td>
-                <td>
-                  <div className="pantry-td">
-                    <button>Edit</button> <button>Delete</button>
-                  </div>
-                </td>
+                </th>
+                <th>
+                  <div className="pantry-th">Actions</div>
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {currentIngredients.map((pantryProduct, index) => (
+                <tr key={index}>
+                  <td>
+                    <div className="pantry-td">
+                      <label
+                        className="checkbox-container"
+                        htmlFor={`pantry-checkbox-${index}`}
+                      >
+                        <input
+                          type="checkbox"
+                          name={`pantry-${index}`}
+                          id={`pantry-checkbox-${index}`}
+                        />
+                        <span></span>
+                      </label>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="pantry-td">{pantryProduct.name}</div>
+                  </td>
+                  <td>
+                    <div className="pantry-td">{pantryProduct.qty}</div>
+                  </td>
+                  <td>
+                    <div className="pantry-td">{pantryProduct.category}</div>
+                  </td>
+                  <td>
+                    <div className="pantry-td">{pantryProduct.notes}</div>
+                  </td>
+                  <td>
+                    <div className="pantry-td">
+                      <button className="pantry-edit__btn">Edit</button>{" "}
+                      <button className="pantry-delete__btn">Delete</button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div className="empty">Your pantry is empty...</div>
+        )}
 
-        <div className="pantry__pagination">
-          <div className="pagination-controls">
-            <button
-              // onClick={handlePrevPage}
-              // disabled={currentPage === 1}
-              className="pagination-btn"
-            >
-              <ChevronLeft size={30} strokeWidth={3} />
-            </button>
+        {pantryProducts.length > 0 && (
+          <div className="pantry__pagination">
+            <div className="pagination-controls">
+              <button
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+                className="pagination-btn"
+              >
+                <ChevronLeft size={30} strokeWidth={3} />
+              </button>
 
-            <span className="page-info">
-              Page 0 of 10
-              {/* Page {currentPage} of {totalPages} */}
-            </span>
+              <span className="page-info">
+                Page {currentPage} of {totalPages || 1}
+              </span>
 
-            <button
-              // onClick={handleNextPage}
-              // disabled={currentPage === totalPages}
-              className="pagination-btn"
-            >
-              <ChevronRight size={30} strokeWidth={3} />
-            </button>
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+                className="pagination-btn"
+              >
+                <ChevronRight size={30} strokeWidth={3} />
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
         {isModalOpen && (
           <PantryModal
