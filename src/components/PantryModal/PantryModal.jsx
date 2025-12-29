@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./PantryModal.css";
+import Select from "../UI/Select/Select";
 
 const PantryModal = ({ onAddNewProduct, closeModal }) => {
   const [newProductName, setNewProductName] = useState("");
@@ -40,6 +41,14 @@ const PantryModal = ({ onAddNewProduct, closeModal }) => {
     return () => document.removeEventListener("mousedown", clickOutsideHandler);
   }, [closeModal]);
 
+  const categoryOptions = [
+    { value: "eggs", text: "Eggs" },
+    { value: "chicken", text: "Chicken" },
+    { value: "beef", text: "Beef" },
+    { value: "milk", text: "Milk" },
+    { value: "oatmeal", text: "Oatmeal" },
+  ];
+
   return (
     <div className="pantry-modal" ref={backgroundRef}>
       <form
@@ -78,15 +87,13 @@ const PantryModal = ({ onAddNewProduct, closeModal }) => {
 
         <div className="pantry-modal__form-item">
           <label htmlFor="panryAddCategory">Category</label>
-          {/* custom select or something like search with suggestions */}
-          <select
+          <Select
+            className="white-bg"
+            options={categoryOptions}
             value={newProductCategory}
-            onChange={(e) => setNewProductCategory(e.target.value)}
-          >
-            <option value="eggs">Eggs</option>
-            <option value="pork">Pork</option>
-            <option value="chicken">Chicken</option>
-          </select>
+            onChange={setNewProductCategory}
+            searchable
+          />
         </div>
 
         <div className="pantry-modal__form-item">

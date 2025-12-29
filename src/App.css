@@ -40,3 +40,21 @@ button {
   margin: 0 auto;
   padding: 0 15px;
 }
+
+&::-webkit-scrollbar {
+  width: 8px;
+  background: var(--dark-red);
+}
+&::-webkit-scrollbar-track {
+  background: var(--dark-red);
+  border-radius: 4px;
+}
+
+&::-webkit-scrollbar-thumb {
+  background: var(--red-accent);
+  border-radius: 4px;
+}
+
+&::-webkit-scrollbar-thumb:hover {
+  background: var(--red-accent);
+}
