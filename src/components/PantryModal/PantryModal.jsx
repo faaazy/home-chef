@@ -8,8 +8,19 @@ const PantryModal = ({ onAddNewProduct, closeModal }) => {
   const [newProductCategory, setNewProductCategory] = useState("eggs");
   const [newProductNotes, setNewProductNotes] = useState("");
 
+  const [newCategoryClicked, setNewCategoryClicked] = useState(false);
+  const [newCategoryValue, setNewCategoryValue] = useState("");
+
   const backgroundRef = useRef();
   const modalRef = useRef();
+
+  const [categoryOptions, setCategoryOptions] = useState([
+    { value: "eggs", text: "Eggs" },
+    { value: "chicken", text: "Chicken" },
+    { value: "beef", text: "Beef" },
+    { value: "milk", text: "Milk" },
+    { value: "oatmeal", text: "Oatmeal" },
+  ]);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -41,13 +52,48 @@ const PantryModal = ({ onAddNewProduct, closeModal }) => {
     return () => document.removeEventListener("mousedown", clickOutsideHandler);
   }, [closeModal]);
 
-  const categoryOptions = [
-    { value: "eggs", text: "Eggs" },
-    { value: "chicken", text: "Chicken" },
-    { value: "beef", text: "Beef" },
-    { value: "milk", text: "Milk" },
-    { value: "oatmeal", text: "Oatmeal" },
-  ];
+  const addNewCategoryHandler = () => {
+    const trimmedValue = newCategoryValue.trim();
+
+    if (!trimmedValue) {
+      return; // Не добавляем пустую категорию
+    }
+
+    // Проверяем, существует ли уже такая категория
+    const categoryExists = categoryOptions.some(
+      (option) =>
+        option.value === trimmedValue.toLowerCase() ||
+        option.text.toLowerCase() === trimmedValue.toLowerCase()
+    );
+
+    if (!categoryExists) {
+      // Создаем новую опцию
+      const newOption = {
+        value: trimmedValue.toLowerCase(), // value в нижнем регистре
+        text: trimmedValue.charAt(0).toUpperCase() + trimmedValue.slice(1), // Первая буква заглавная
+      };
+
+      // Добавляем новую категорию в опции
+      setCategoryOptions((prev) => [...prev, newOption]);
+
+      // Устанавливаем новую категорию как выбранную
+      setNewProductCategory(newOption.value);
+    } else {
+      // Если категория уже существует, просто выбираем ее
+      const existingOption = categoryOptions.find(
+        (option) =>
+          option.value === trimmedValue.toLowerCase() ||
+          option.text.toLowerCase() === trimmedValue.toLowerCase()
+      );
+      if (existingOption) {
+        setNewProductCategory(existingOption.value);
+      }
+    }
+
+    // Сбрасываем поле ввода и скрываем его
+    setNewCategoryValue("");
+    setNewCategoryClicked(false);
+  };
 
   return (
     <div className="pantry-modal" ref={backgroundRef}>
@@ -94,6 +140,40 @@ const PantryModal = ({ onAddNewProduct, closeModal }) => {
             onChange={setNewProductCategory}
             searchable
           />
+
+          {!newCategoryClicked && (
+            <button
+              className="add-category-btn"
+              onClick={() => setNewCategoryClicked(true)}
+            >
+              Add new Category
+            </button>
+          )}
+
+          {newCategoryClicked && (
+            <div className="add-category">
+              <input
+                type="text"
+                placeholder="New category..."
+                value={newCategoryValue}
+                onChange={(e) => setNewCategoryValue(e.target.value)}
+                autoFocus
+              />
+              <button type="button" onClick={addNewCategoryHandler}>
+                Save
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setNewCategoryClicked(false);
+                  setNewCategoryValue("");
+                }}
+                className="cancel-btn"
+              >
+                Cancel
+              </button>
+            </div>
+          )}
         </div>
 
         <div className="pantry-modal__form-item">
