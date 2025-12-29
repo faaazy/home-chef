@@ -55,11 +55,8 @@ const PantryModal = ({ onAddNewProduct, closeModal }) => {
   const addNewCategoryHandler = () => {
     const trimmedValue = newCategoryValue.trim();
 
-    if (!trimmedValue) {
-      return; // Не добавляем пустую категорию
-    }
+    if (!trimmedValue) return;
 
-    // Проверяем, существует ли уже такая категория
     const categoryExists = categoryOptions.some(
       (option) =>
         option.value === trimmedValue.toLowerCase() ||
@@ -67,19 +64,15 @@ const PantryModal = ({ onAddNewProduct, closeModal }) => {
     );
 
     if (!categoryExists) {
-      // Создаем новую опцию
       const newOption = {
-        value: trimmedValue.toLowerCase(), // value в нижнем регистре
-        text: trimmedValue.charAt(0).toUpperCase() + trimmedValue.slice(1), // Первая буква заглавная
+        value: trimmedValue.toLowerCase(),
+        text: trimmedValue,
       };
 
-      // Добавляем новую категорию в опции
       setCategoryOptions((prev) => [...prev, newOption]);
 
-      // Устанавливаем новую категорию как выбранную
       setNewProductCategory(newOption.value);
     } else {
-      // Если категория уже существует, просто выбираем ее
       const existingOption = categoryOptions.find(
         (option) =>
           option.value === trimmedValue.toLowerCase() ||
@@ -90,7 +83,6 @@ const PantryModal = ({ onAddNewProduct, closeModal }) => {
       }
     }
 
-    // Сбрасываем поле ввода и скрываем его
     setNewCategoryValue("");
     setNewCategoryClicked(false);
   };
