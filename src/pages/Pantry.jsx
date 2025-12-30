@@ -8,15 +8,21 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./Pantry.css";
 import PantryModal from "../components/PantryModal/PantryModal";
 import PantryFilters from "../components/PantryFilters/PantryFilters";
 
 const Pantry = () => {
-  const [pantryProducts, setPantryProducts] = useState([]);
+  console.log(localStorage.getItem("pantryProducts"));
+
+  const [pantryProducts, setPantryProducts] = useState(() => {
+    const stored = localStorage.getItem("pantryProducts");
+    return stored ? JSON.parse(stored) : [];
+  });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [editClickedProduct, setEditClickedProduct] = useState(null);
 
   const itemsPerPage = 5;
 
@@ -43,8 +49,46 @@ const Pantry = () => {
   };
 
   const addNewProductHandler = (newProduct) => {
-    setPantryProducts((prev) => [...prev, newProduct]);
+    if (newProduct.id) {
+      setPantryProducts((prev) =>
+        prev.map((product) =>
+          product.id === newProduct.id ? newProduct : product
+        )
+      );
+    } else {
+      const newProductWithId = {
+        ...newProduct,
+        id: Date.now(),
+        done: false,
+      };
+      setPantryProducts((prev) => [...prev, newProductWithId]);
+    }
+
     setIsModalOpen(false);
+    setEditClickedProduct(null);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("pantryProducts", JSON.stringify(pantryProducts));
+  }, [pantryProducts]);
+
+  const editClickHandler = (product) => {
+    setIsModalOpen(true);
+    setEditClickedProduct(product);
+  };
+
+  const deleteClickHandler = (productId) => {
+    setPantryProducts((prev) =>
+      prev.filter((product) => product.id !== productId)
+    );
+  };
+
+  const onCheckClickHandler = (productId) => {
+    setPantryProducts((prev) =>
+      prev.map((product) =>
+        product.id === productId ? { ...product, done: !product.done } : product
+      )
+    );
   };
 
   return (
@@ -60,7 +104,10 @@ const Pantry = () => {
 
             <div
               className="pantry__display-row__add"
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => {
+                setEditClickedProduct(null);
+                setIsModalOpen(true);
+              }}
             >
               <Plus />
               <button className="pantry__display-row__add-btn">
@@ -112,7 +159,7 @@ const Pantry = () => {
             </thead>
             <tbody>
               {currentIngredients.map((pantryProduct, index) => (
-                <tr key={index}>
+                <tr key={index} className={pantryProduct.done ? "done" : ""}>
                   <td>
                     <div className="pantry-td">
                       <label
@@ -123,6 +170,8 @@ const Pantry = () => {
                           type="checkbox"
                           name={`pantry-${index}`}
                           id={`pantry-checkbox-${index}`}
+                          checked={pantryProduct.done || false}
+                          onChange={() => onCheckClickHandler(pantryProduct.id)}
                         />
                         <span></span>
                       </label>
@@ -142,8 +191,18 @@ const Pantry = () => {
                   </td>
                   <td>
                     <div className="pantry-td">
-                      <button className="pantry-edit__btn">Edit</button>{" "}
-                      <button className="pantry-delete__btn">Delete</button>
+                      <button
+                        className="pantry-edit__btn"
+                        onClick={() => editClickHandler(pantryProduct)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="pantry-delete__btn"
+                        onClick={() => deleteClickHandler(pantryProduct.id)}
+                      >
+                        Delete
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -184,6 +243,7 @@ const Pantry = () => {
           <PantryModal
             onAddNewProduct={addNewProductHandler}
             closeModal={setIsModalOpen}
+            onEditProduct={editClickedProduct ? editClickedProduct : null}
           />
         )}
       </div>

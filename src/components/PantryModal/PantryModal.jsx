@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "./PantryModal.css";
 import Select from "../UI/Select/Select";
 
-const PantryModal = ({ onAddNewProduct, closeModal }) => {
+const PantryModal = ({ onAddNewProduct, closeModal, onEditProduct }) => {
   const [newProductName, setNewProductName] = useState("");
   const [newProductQty, setNewProductQty] = useState("");
   const [newProductCategory, setNewProductCategory] = useState("eggs");
@@ -14,12 +14,28 @@ const PantryModal = ({ onAddNewProduct, closeModal }) => {
   const backgroundRef = useRef();
   const modalRef = useRef();
 
+  useEffect(() => {
+    if (onEditProduct) {
+      // Если редактируем продукт, заполняем поля его данными
+      setNewProductName(onEditProduct.name || "");
+      setNewProductQty(onEditProduct.qty || "");
+      setNewProductCategory(onEditProduct.category || "eggs");
+      setNewProductNotes(onEditProduct.notes || "");
+    } else {
+      // Если добавляем новый продукт, сбрасываем поля
+      setNewProductName("");
+      setNewProductQty("");
+      setNewProductCategory("eggs");
+      setNewProductNotes("");
+    }
+  }, [onEditProduct]);
+
   const [categoryOptions, setCategoryOptions] = useState([
     { value: "eggs", text: "Eggs" },
     { value: "chicken", text: "Chicken" },
     { value: "beef", text: "Beef" },
-    { value: "milk", text: "Milk" },
-    { value: "oatmeal", text: "Oatmeal" },
+    { value: "drink", text: "Drink" },
+    { value: "fish", text: "Fish" },
   ]);
 
   const formSubmitHandler = (e) => {
@@ -31,6 +47,11 @@ const PantryModal = ({ onAddNewProduct, closeModal }) => {
       category: newProductCategory,
       notes: newProductNotes,
     };
+
+    if (onEditProduct && onEditProduct.id) {
+      newProduct.id = onEditProduct.id;
+      newProduct.done = onEditProduct.done || false;
+    }
 
     onAddNewProduct(newProduct);
 
@@ -94,7 +115,9 @@ const PantryModal = ({ onAddNewProduct, closeModal }) => {
         onSubmit={formSubmitHandler}
         ref={modalRef}
       >
-        <div className="pantry-modal__form-title">New Product</div>
+        <div className="pantry-modal__form-title">
+          {onEditProduct ? "Edit Product" : "New Product"}
+        </div>
 
         <div className="pantry-modal__form-item">
           <label htmlFor="panryAddName">Name</label>
@@ -182,7 +205,9 @@ const PantryModal = ({ onAddNewProduct, closeModal }) => {
         </div>
 
         <div className="pantry-modal__form-btn">
-          <button>Add new Product</button>
+          <button>
+            {onEditProduct ? "Update Product" : "Add new Product"}
+          </button>
         </div>
       </form>
     </div>
