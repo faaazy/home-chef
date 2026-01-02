@@ -16,13 +16,11 @@ const PantryModal = ({ onAddNewProduct, closeModal, onEditProduct }) => {
 
   useEffect(() => {
     if (onEditProduct) {
-      // Если редактируем продукт, заполняем поля его данными
       setNewProductName(onEditProduct.name || "");
       setNewProductQty(onEditProduct.qty || "");
       setNewProductCategory(onEditProduct.category || "eggs");
       setNewProductNotes(onEditProduct.notes || "");
     } else {
-      // Если добавляем новый продукт, сбрасываем поля
       setNewProductName("");
       setNewProductQty("");
       setNewProductCategory("eggs");
