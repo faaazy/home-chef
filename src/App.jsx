@@ -21,6 +21,8 @@ import Area from "./pages/Area";
 import IngredientsList from "./pages/IngredientsList";
 import IngredientMeals from "./pages/IngredientMeals";
 import Pantry from "./pages/Pantry";
+import Cookbook from "./pages/Cookbook";
+import Favorites from "./pages/Favorites";
 
 function App() {
   const router = createBrowserRouter([
@@ -71,6 +73,14 @@ function App() {
         {
           path: "pantry",
           element: <Pantry />,
+        },
+        {
+          path: "cookbook",
+          element: <Cookbook />,
+        },
+        {
+          path: "favorites",
+          element: <Favorites />,
         },
       ],
     },

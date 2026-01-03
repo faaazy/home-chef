@@ -63,13 +63,13 @@ const Header = () => {
                   />
                 </li>
                 <li className="nav__list-item">
-                  <NavLink to={"meal-plan"}>Meal Plan</NavLink>
+                  <NavLink to={"cookbook"}>Cookbook</NavLink>
                 </li>
                 <li className="nav__list-item">
                   <NavLink to={"pantry"}>Pantry</NavLink>
                 </li>
                 <li className="nav__list-item">
-                  <NavLink to={"shopping-list"}>Shopping list</NavLink>
+                  <NavLink to={"favorites"}>Favorites</NavLink>
                 </li>
 
                 <li className="nav__list-item">
