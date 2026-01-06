@@ -1,0 +1,71 @@
+.cookbook {
+  padding: 30px 0;
+
+  .empty {
+    text-decoration: none;
+
+    a {
+      margin-top: 10px;
+      display: inline-block;
+      padding: 10px 15px 10px 10px;
+
+      font-size: 24px;
+
+      background-color: var(--default);
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+}
+
+.cookbook__title {
+  margin-top: 10px;
+  font-size: 46px;
+  font-weight: 900;
+}
+
+.cookbook__subtitle {
+  font-size: 18px;
+  color: rgb(49, 49, 49);
+  letter-spacing: 0.5px;
+}
+
+.cookbook__actions {
+  margin-top: 30px;
+  padding: 15px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+
+  background-color: var(--default);
+  color: #fff;
+  border-radius: 15px;
+
+  input {
+    padding: 5px 10px;
+    width: 250px;
+    border-radius: 15px;
+    border: none;
+    border: 2px solid var(--default);
+
+    font-size: 16px;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.cookbook__actions-create {
+  background-color: var(--red);
+  padding: 6px 16px;
+  border-radius: 55px;
+  font-size: 18px;
+  font-weight: 500;
+
+  transition: 0.2s ease-in;
+  &:hover {
+    background-color: var(--red-accent);
+  }
+}
