@@ -1,0 +1,124 @@
+.create-recipe {
+  padding: 30px 0;
+}
+
+.create-recipe__title {
+  margin-top: 10px;
+  font-size: 46px;
+  font-weight: 900;
+}
+
+.create-recipe__form {
+  max-width: 800px;
+  margin: 20px auto;
+  margin-top: 20px;
+  padding: 30px;
+
+  color: #fff;
+  border-radius: 10px;
+  background-color: var(--default);
+
+  input,
+  textarea {
+    border: none !important;
+    &:focus {
+      outline: 3px solid var(--red-accent) !important;
+    }
+  }
+}
+
+.create-recipe__form-item {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+  }
+
+  h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  input {
+    padding: 5px 10px;
+    width: 100%;
+    border: none;
+    border: 2px solid var(--default);
+
+    font-size: 16px;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  button {
+    margin: 5px 0 10px;
+    padding: 5px 15px;
+    background-color: var(--red);
+    color: #fff;
+    border: none;
+    font-size: inherit;
+
+    &:hover {
+      background-color: var(--red-accent);
+    }
+  }
+}
+
+.create-recipe__form-item__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.ingredient-counter {
+  margin-top: 10px;
+  font-size: 16px;
+  text-decoration: underline;
+}
+.create-recipe__form-item__list-ingredient {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.create-recipe__form-item__list-instruction {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.instruction-step {
+  margin-top: 10px;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.instruction-step__content {
+  width: 100%;
+
+  textarea {
+    width: 100%;
+    resize: vertical;
+    padding: 3px;
+    font-family: inherit;
+    font-size: 14px;
+  }
+}
+
+.create-recipe__form-submit {
+  padding-top: 10px;
+  button {
+    padding: 6px;
+    width: 100%;
+
+    font-size: 20px;
+    font-weight: 600;
+    background-color: var(--red-accent);
+    border: none;
+    color: #fff;
+
+    &:hover {
+      background-color: rgb(202, 71, 23);
+    }
+  }
+}
