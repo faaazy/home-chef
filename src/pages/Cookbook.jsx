@@ -13,10 +13,10 @@ const Cookbook = () => {
     setSearchQuery(e.target.value);
   };
 
-  const filteredRecipes = recipes.filter(
-    (recipe) =>
-      recipe.title.toLowerCase().includes(search.toLowerCase()) ||
-      recipe.description?.toLowerCase().includes(search.toLowerCase())
+  console.log(recipes);
+
+  const filteredRecipes = recipes.filter((recipe) =>
+    recipe.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (

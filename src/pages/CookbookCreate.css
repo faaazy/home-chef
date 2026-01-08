@@ -69,9 +69,27 @@
 .create-recipe__form-item__list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
-.ingredient-counter {
+.ingredient-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-top: 10px;
+}
+
+.ingredient-delete {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--red-accent);
+  }
+}
+
+.ingredient-counter {
   font-size: 16px;
   text-decoration: underline;
 }
@@ -87,8 +105,14 @@
   gap: 5px;
 }
 
-.instruction-step {
+.instruction-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-top: 10px;
+}
+
+.instruction-step {
   font-size: 16px;
   text-decoration: underline;
 }
