@@ -66,6 +66,22 @@ const Cookbook = () => {
                   {filteredRecipes.map((recipe) => (
                     <div key={recipe.id} className="cookbook__grid-card">
                       <h3>{recipe.title}</h3>
+
+                      <div className="cookbook__grid-card__row">
+                        <ul className="cookbook__grid-card__list">
+                          <p>Ingredients</p>
+                          {recipe.ingredients.map((ingredient, i) => (
+                            <li key={i}>{ingredient}</li>
+                          ))}
+                        </ul>
+
+                        <ul className="cookbook__grid-card__list">
+                          <p>Instructions</p>
+                          {recipe.instructions.map((instruction, i) => (
+                            <li key={i}>{instruction}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   ))}
                 </div>

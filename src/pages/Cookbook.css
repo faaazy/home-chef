@@ -4,14 +4,15 @@
   .empty {
     text-decoration: none;
 
-    a {
+    button {
       margin-top: 10px;
       display: inline-block;
-      padding: 10px 15px 10px 10px;
+      padding: 10px;
 
       font-size: 24px;
 
       background-color: var(--default);
+      border: none;
       color: #fff;
       cursor: pointer;
     }
@@ -67,5 +68,56 @@
   transition: 0.2s ease-in;
   &:hover {
     background-color: var(--red-accent);
+  }
+}
+
+.cookbook__content-stats {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 18px;
+}
+
+.cookbook__content {
+  margin-top: 40px;
+}
+
+.cookbook__grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.cookbook__grid-card {
+  background-color: var(--default);
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+
+  h3 {
+    margin-bottom: 10px;
+  }
+}
+
+.cookbook__grid-card__row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.cookbook__grid-card__list {
+  p {
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  li {
+    margin-left: 15px;
+    list-style-type: circle;
+  }
+
+  &:last-child {
+    li {
+      list-style-type: decimal;
+    }
   }
 }
