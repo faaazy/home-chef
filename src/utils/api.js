@@ -1,9 +1,4 @@
 const API_MEALDB_QUERY = "https://www.themealdb.com/api/json/v1/1/";
-const API_SPOONACULAR_QUERY = "https://api.spoonacular.com/recipes/";
-const SPOONACULAR_KEY = import.meta.env.VITE_SPOONACULAR_API_KEY;
-// const res = await fetch(
-//   `${API_SPOONACULAR_QUERY}complexSearch?query=${query}&apiKey=${SPOONACULAR_KEY}`
-// );
 
 export const searchApi = {
   async getSearchResults(query) {
