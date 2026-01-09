@@ -1,10 +1,12 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useFavorites } from "../context/FavoritesContext";
 import { X } from "lucide-react";
 import "./Favorites.css";
 
 const Favorites = () => {
   const { favorites, removeFavorite } = useFavorites();
+
+  const navigate = useNavigate();
 
   return (
     <section className="favorites">
@@ -30,7 +32,9 @@ const Favorites = () => {
                 {favorites.map((favorite) => (
                   <div key={favorite.id} className="favorites__grid-card">
                     <div className="favorites__grid-card__heading">
-                      <h3>{favorite.title}</h3>
+                      <h3 onClick={() => navigate(`/recipe/${favorite.id}`)}>
+                        {favorite.title}
+                      </h3>
                       <X
                         onClick={() => removeFavorite(favorite.id)}
                         size={30}
@@ -38,7 +42,10 @@ const Favorites = () => {
                       />
                     </div>
 
-                    <div className="favorites__grid-card__img">
+                    <div
+                      className="favorites__grid-card__img"
+                      onClick={() => navigate(`/recipe/${favorite.id}`)}
+                    >
                       <img src={favorite.imgSrc} alt={favorite.title} />
                     </div>
                   </div>
