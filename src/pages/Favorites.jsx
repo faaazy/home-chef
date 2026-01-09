@@ -1,11 +1,10 @@
 import { Link } from "react-router";
 import { useFavorites } from "../context/FavoritesContext";
 import { X } from "lucide-react";
+import "./Favorites.css";
 
 const Favorites = () => {
-  const { favorites, removeFavorite, isFavorite } = useFavorites();
-
-  console.log(favorites);
+  const { favorites, removeFavorite } = useFavorites();
 
   return (
     <section className="favorites">
@@ -32,9 +31,15 @@ const Favorites = () => {
                   <div key={favorite.id} className="favorites__grid-card">
                     <div className="favorites__grid-card__heading">
                       <h3>{favorite.title}</h3>
-                      <X onClick={() => removeFavorite(favorite.id)} />
-                      {/* <div className="favorite-remove">
-                      </div> */}
+                      <X
+                        onClick={() => removeFavorite(favorite.id)}
+                        size={30}
+                        className="favorite-remove"
+                      />
+                    </div>
+
+                    <div className="favorites__grid-card__img">
+                      <img src={favorite.imgSrc} alt={favorite.title} />
                     </div>
                   </div>
                 ))}

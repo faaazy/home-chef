@@ -3,19 +3,6 @@
 
   .empty {
     text-decoration: none;
-
-    button {
-      margin-top: 10px;
-      display: inline-block;
-      padding: 10px;
-
-      font-size: 24px;
-
-      background-color: var(--default);
-      border: none;
-      color: #fff;
-      cursor: pointer;
-    }
   }
 }
 
