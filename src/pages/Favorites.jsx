@@ -1,8 +1,49 @@
+import { Link } from "react-router";
+import { useFavorites } from "../context/FavoritesContext";
+import { X } from "lucide-react";
+
 const Favorites = () => {
+  const { favorites, removeFavorite, isFavorite } = useFavorites();
+
+  console.log(favorites);
+
   return (
-    <>
-      <h1>Favorites Page</h1>
-    </>
+    <section className="favorites">
+      <div className="container">
+        <h1 className="favorites__title">Favorites</h1>
+
+        {favorites.length === 0 ? (
+          <div className="empty">
+            <h3>Favorites are empty</h3>
+            <Link to="/">View all Recipes</Link>
+          </div>
+        ) : (
+          <>
+            <div className="favorites__content">
+              <div className="favorites__content-stats">
+                <div className="favorites__content-stats__num">
+                  {favorites.length}
+                </div>
+                <div className="favorites__content-stats__title">Favorites</div>
+              </div>
+
+              <div className="favorites__grid">
+                {favorites.map((favorite) => (
+                  <div key={favorite.id} className="favorites__grid-card">
+                    <div className="favorites__grid-card__heading">
+                      <h3>{favorite.title}</h3>
+                      <X onClick={() => removeFavorite(favorite.id)} />
+                      {/* <div className="favorite-remove">
+                      </div> */}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    </section>
   );
 };
 

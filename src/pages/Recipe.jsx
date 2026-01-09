@@ -1,12 +1,16 @@
-import { Link, Youtube } from "lucide-react";
+import { HeartIcon, Link, Youtube } from "lucide-react";
 import { useLoaderData } from "react-router";
 import Tag from "../components/UI/Tag/Tag";
 import "./Recipe.css";
+import { useFavorites } from "../context/FavoritesContext";
 
 const Recipe = () => {
   const recipeData = useLoaderData();
 
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+
   const {
+    idMeal,
     strMeal,
     strArea,
     strCategory,
@@ -41,7 +45,19 @@ const Recipe = () => {
     }
   }
 
-  console.log(ingredients[0]);
+  const clickFavoriteHandler = () => {
+    if (isFavorite(idMeal)) {
+      removeFavorite(idMeal);
+    } else {
+      const recipeData = {
+        id: idMeal,
+        title: strMeal,
+        imgSrc: strMealThumb,
+      };
+
+      addFavorite(recipeData);
+    }
+  };
 
   return (
     <section className="recipe">
@@ -68,7 +84,23 @@ const Recipe = () => {
             ))}
           </div>
 
-          <h1 className="recipe__title">{strMeal}</h1>
+          <div className="recipe__heading">
+            <h1 className="recipe__title">{strMeal}</h1>
+
+            {isFavorite(idMeal) ? (
+              <HeartIcon
+                onClick={clickFavoriteHandler}
+                className="favorite-icon favorite-icon--active"
+                size={30}
+              />
+            ) : (
+              <HeartIcon
+                onClick={clickFavoriteHandler}
+                className="favorite-icon "
+                size={30}
+              />
+            )}
+          </div>
 
           <div className="recipe__update">
             {dateModified !== null ? `Updated on ${updatedDateConverted}` : ""}

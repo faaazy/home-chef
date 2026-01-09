@@ -10,16 +10,11 @@ const Home = () => {
   const { strMeal, strMealThumb, idMeal } = mealData.randomMeal.meals[0];
   const { categories } = mealData.categories;
 
-  console.log(categories);
-
   const randomRecipeClickHandler = (idMeal) => {
     navigate(`/recipe/${idMeal}`);
   };
 
-  const popularCategoryClickHandler = (category, meal) => {
-    console.log(category, meal);
-    console.log(mealData);
-
+  const popularCategoryClickHandler = (category) => {
     navigate(`/category/${category}`);
   };
 
