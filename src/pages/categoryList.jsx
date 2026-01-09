@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate } from "react-router";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import "./Category.css";
 
 const CategoryList = () => {

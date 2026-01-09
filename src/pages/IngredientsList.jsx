@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate } from "react-router";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import "./IngredientsList.css";
 import { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";

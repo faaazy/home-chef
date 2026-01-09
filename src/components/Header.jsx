@@ -1,5 +1,5 @@
 import "./Header.css";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router-dom";
 import SearchBar from "./UI/SearchBar/SearchBar";
 import { ChevronDown, ChefHat } from "lucide-react";
 import { useEffect, useRef, useState } from "react";

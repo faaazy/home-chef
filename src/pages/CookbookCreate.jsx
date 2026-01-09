@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./CookbookCreate.css";
 import { X } from "lucide-react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const CookbookCreate = () => {
   const [ingredients, setIngredients] = useState([

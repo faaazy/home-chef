@@ -1,5 +1,5 @@
 import "./Home.css";
-import { useLoaderData, useNavigate } from "react-router";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const mealData = useLoaderData();

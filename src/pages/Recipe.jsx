@@ -1,5 +1,5 @@
 import { HeartIcon, Link, Youtube } from "lucide-react";
-import { useLoaderData } from "react-router";
+import { useLoaderData } from "react-router-dom";
 import Tag from "../components/UI/Tag/Tag";
 import "./Recipe.css";
 import { useFavorites } from "../context/FavoritesContext";
