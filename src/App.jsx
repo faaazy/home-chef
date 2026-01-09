@@ -14,16 +14,16 @@ import {
   ingredientsListLoader,
   ingredientMealsLoader,
 } from "./utils/loaders";
-import Category from "./pages/Category";
-import CategoryList from "./pages/CategoryList";
-import AreaList from "./pages/AreaList";
-import Area from "./pages/Area";
-import IngredientsList from "./pages/IngredientsList";
-import IngredientMeals from "./pages/IngredientMeals";
-import Pantry from "./pages/Pantry";
-import Cookbook from "./pages/Cookbook";
-import Favorites from "./pages/Favorites";
-import CookbookCreate from "./pages/CookbookCreate";
+import Category from "./pages/Category.jsx";
+import CategoryList from "./pages/CategoryList.jsx";
+import AreaList from "./pages/AreaList.jsx";
+import Area from "./pages/Area.jsx";
+import IngredientsList from "./pages/IngredientsList.jsx";
+import IngredientMeals from "./pages/IngredientMeals.jsx";
+import Pantry from "./pages/Pantry.jsx";
+import Cookbook from "./pages/Cookbook.jsx";
+import Favorites from "./pages/Favorites.jsx";
+import CookbookCreate from "./pages/CookbookCreate.jsx";
 
 function App() {
   const router = createBrowserRouter([
