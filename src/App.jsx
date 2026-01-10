@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import "./assets/styles/variables.css";
 import "./App.css";
 import Layout from "./components/Layout";
@@ -26,7 +26,7 @@ import Favorites from "./pages/Favorites.jsx";
 import CookbookCreate from "./pages/CookbookCreate.jsx";
 
 function App() {
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       path: "/",
       element: <Layout />,
